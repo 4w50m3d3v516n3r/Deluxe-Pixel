@@ -1,0 +1,28 @@
+[package]
+name = "deluxe-pixel"
+version = "1.0.0"
+edition = "2021"
+description = "A modern Windows pixel paint program in the spirit of the classic 256-colour paint programs"
+
+[[bin]]
+name = "deluxe-pixel"
+path = "src/main.rs"
+
+[dependencies]
+eframe = "0.37"
+egui = "0.37"
+image = { version = "0.25", default-features = false, features = ["png", "bmp", "gif", "jpeg", "tga", "tiff"] }
+png = "0.18"
+gif = "0.14"
+rfd = "0.17"
+ab_glyph = "0.2"
+arboard = { version = "3", default-features = false, features = ["image-data"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_UI_WindowsAndMessaging", "Win32_UI_Shell", "Win32_System_SystemInformation"] }
+
+[profile.release]
+opt-level = 3
+
+[profile.dev]
+opt-level = 2
